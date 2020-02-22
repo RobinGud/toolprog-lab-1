@@ -25,8 +25,13 @@ public class Dif implements Expression {
     }
 
     @Override
-    public Expression times(int multiplier) {
-        return new Dif(minuend.times(multiplier), subtrahend.times(multiplier));
+    public Expression multiplication(int multiplier) {
+        return new Dif(minuend.multiplication(multiplier), subtrahend.multiplication(multiplier));
+    }
+
+    @Override
+    public Expression division(int divider) {
+        return new Dif(minuend.division(divider), subtrahend.division(divider));
     }
 
     @Override

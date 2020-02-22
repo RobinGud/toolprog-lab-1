@@ -9,20 +9,28 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class TestExample {
     Money five;
+    Money ten;
     Expression fiveBucks;
     Expression tenFrancs;
 
     @BeforeEach
     public void setUp() {
         five = Money.dollar(5);
+        ten = Money.dollar(10);
         fiveBucks = Money.dollar(5);
         tenFrancs = Money.franc(10);
     }
 
     @Test
     public void testMultiplication() {
-        assertEquals(Money.dollar(10), five.times(2));
-        assertEquals(Money.dollar(15), five.times(3));
+        assertEquals(Money.dollar(10), five.multiplication(2));
+        assertEquals(Money.dollar(15), five.multiplication(3));
+    }
+
+    @Test
+    public void testDivision() {
+        assertEquals(Money.dollar(5), ten.division(2));
+        assertEquals(Money.dollar(2), five.division(2));
     }
 
     @Test
@@ -117,7 +125,7 @@ public class TestExample {
     public void testSumTimes() {
         Exchanger Exchanger = new Exchanger();
         Exchanger.addRate("CHF", "USD", 2);
-        Expression sum = new Sum(fiveBucks, tenFrancs).times(2);
+        Expression sum = new Sum(fiveBucks, tenFrancs).multiplication(2);
         Money result = Exchanger.reduce(sum, "USD");
         assertEquals(Money.dollar(20), result);
     }

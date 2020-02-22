@@ -9,7 +9,9 @@ public interface Expression {
 
     Expression plus(Expression addend);
 
-    Expression times(int multiplier);
+    Expression multiplication(int multiplier);
+
+    Expression division(int divider);
 
     Expression dif(Expression subtrahend);
 }

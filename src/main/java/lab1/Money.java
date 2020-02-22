@@ -34,8 +34,12 @@ public class Money implements Expression {
         return amount < money.amount && currency().equals(money.currency());
     }
 
-    public Expression times(int multiplier) {
+    public Expression multiplication(int multiplier) {
         return new Money(amount * multiplier, currency);
+    }
+
+    public Expression division(int divider) {
+        return new Money((Integer) (amount / divider), currency);
     }
 
     public Expression plus(Expression addend) {

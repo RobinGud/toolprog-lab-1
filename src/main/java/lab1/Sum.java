@@ -25,8 +25,13 @@ public class Sum implements Expression {
     }
 
     @Override
-    public Expression times(int multiplier) {
-        return new Sum(augend.times(multiplier), addend.times(multiplier));
+    public Expression multiplication(int multiplier) {
+        return new Sum(augend.multiplication(multiplier), addend.multiplication(multiplier));
+    }
+
+    @Override
+    public Expression division(int divider) {
+        return new Sum(augend.division(divider), addend.division(divider));
     }
 
     @Override
