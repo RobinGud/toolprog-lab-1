@@ -11,6 +11,7 @@ public class TestExample {
     Money five;
     Money ten;
     Expression fiveBucks;
+    Expression tenBucks;
     Expression tenFrancs;
 
     @BeforeEach
@@ -18,6 +19,7 @@ public class TestExample {
         five = Money.dollar(5);
         ten = Money.dollar(10);
         fiveBucks = Money.dollar(5);
+        tenBucks = Money.dollar(10);
         tenFrancs = Money.franc(10);
     }
 
@@ -57,6 +59,7 @@ public class TestExample {
     public void testCurrency() {
         assertEquals("USD", Money.dollar(1).currency());
         assertEquals("CHF", Money.franc(1).currency());
+        assertEquals("RUB", Money.ruble(1).currency());
     }
 
     @Test
@@ -122,11 +125,39 @@ public class TestExample {
     }
 
     @Test
-    public void testSumTimes() {
+    public void testSumDifMoney() {
+
         Exchanger Exchanger = new Exchanger();
         Exchanger.addRate("CHF", "USD", 2);
-        Expression sum = new Sum(fiveBucks, tenFrancs).multiplication(2);
+        Expression sum = new Sum(fiveBucks, tenFrancs).dif(fiveBucks);
         Money result = Exchanger.reduce(sum, "USD");
+        assertEquals(Money.dollar(5), result);
+    }
+
+    @Test
+    public void testSumMult() {
+        Exchanger exchanger = new Exchanger();
+        exchanger.addRate("CHF", "USD", 2);
+        Expression sum = new Sum(fiveBucks, tenFrancs).multiplication(2);
+        Money result = exchanger.reduce(sum, "USD");
         assertEquals(Money.dollar(20), result);
+    }
+
+    @Test
+    public void testDifMult() {
+        Exchanger exchanger = new Exchanger();
+        exchanger.addRate("CHF", "USD", 2);
+        Expression dif = new Dif(tenBucks, tenFrancs).multiplication(2);
+        Money result = exchanger.reduce(dif, "USD");
+        assertEquals(Money.dollar(10), result);
+    }
+
+    @Test
+    public void testDifDiv() {
+        Exchanger exchanger = new Exchanger();
+        exchanger.addRate("CHF", "USD", 2);
+        Expression dif = new Dif(tenBucks, tenFrancs).division(2);
+        Money result = exchanger.reduce(dif, "USD");
+        assertEquals(Money.dollar(3), result);
     }
 }

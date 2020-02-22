@@ -1,5 +1,7 @@
 package lab1;
 
+import java.lang.Math;
+
 /**
  * Money
  */
@@ -18,6 +20,10 @@ public class Money implements Expression {
 
     static Money franc(int amount) {
         return new Money(amount, "CHF");
+    }
+
+    static Money ruble(int amount) {
+        return new Money(amount, "RUB");
     }
 
     @Override
@@ -39,7 +45,7 @@ public class Money implements Expression {
     }
 
     public Expression division(int divider) {
-        return new Money((Integer) (amount / divider), currency);
+        return new Money((int) Math.ceil(amount / divider), currency);
     }
 
     public Expression plus(Expression addend) {
