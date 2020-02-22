@@ -3,7 +3,7 @@ package lab1;
 import java.util.Hashtable;
 
 /**
- * Bank
+ * Exchanger
  */
 public class Exchanger {
     private Hashtable<Pair, Integer> rates = new Hashtable<Pair, Integer>();
