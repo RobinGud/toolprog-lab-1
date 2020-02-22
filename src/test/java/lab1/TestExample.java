@@ -47,6 +47,14 @@ public class TestExample {
     }
 
     @Test
+    public void testReduceDif() {
+        Expression dif = new Dif(Money.dollar(5), Money.dollar(3));
+        Exchanger Exchanger = new Exchanger();
+        Money result = Exchanger.reduce(dif, "USD");
+        assertEquals(Money.dollar(2), result);
+    }
+
+    @Test
     public void testReduceMoney() {
         Exchanger Exchanger = new Exchanger();
         Money result = Exchanger.reduce(Money.dollar(1), "USD");

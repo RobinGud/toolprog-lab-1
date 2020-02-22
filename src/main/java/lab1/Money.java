@@ -34,6 +34,10 @@ public class Money implements Expression {
         return new Sum(this, addend);
     }
 
+    public Expression dif(Expression subtrahend) {
+        return new Dif(this, subtrahend);
+    }
+
     public String currency() {
         return currency;
     }

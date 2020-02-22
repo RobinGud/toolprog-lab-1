@@ -1,21 +1,21 @@
 package lab1;
 
 /**
- * Sum
+ * Dif
  */
-public class Sum implements Expression {
+public class Dif implements Expression {
 
-    Expression augend;
-    Expression addend;
+    Expression minuend;
+    Expression subtrahend;
 
-    public Sum(Expression augend, Expression addend) {
-        this.augend = augend;
-        this.addend = addend;
+    public Dif(Expression minuend, Expression subtrahend) {
+        this.minuend = minuend;
+        this.subtrahend = subtrahend;
     }
 
     @Override
     public Money reduce(Exchanger exchanger, String to) {
-        int amount = augend.reduce(exchanger, to).amount + addend.reduce(exchanger, to).amount;
+        int amount = minuend.reduce(exchanger, to).amount - subtrahend.reduce(exchanger, to).amount;
         return new Money(amount, to);
     }
 
@@ -26,7 +26,7 @@ public class Sum implements Expression {
 
     @Override
     public Expression times(int multiplier) {
-        return new Sum(augend.times(multiplier), addend.times(multiplier));
+        return new Dif(minuend.times(multiplier), subtrahend.times(multiplier));
     }
 
     @Override
