@@ -33,6 +33,19 @@ public class TestExample {
     }
 
     @Test
+    public void testGreater() {
+        assertFalse(Money.dollar(5).greater(Money.dollar(5)));
+        assertTrue(Money.dollar(6).greater(Money.dollar(5)));
+        assertFalse(Money.franc(5).greater(Money.dollar(5)));
+    }
+
+    public void testLess() {
+        assertFalse(Money.dollar(5).less(Money.dollar(5)));
+        assertTrue(Money.dollar(5).less(Money.dollar(6)));
+        assertFalse(Money.franc(5).less(Money.dollar(5)));
+    }
+
+    @Test
     public void testCurrency() {
         assertEquals("USD", Money.dollar(1).currency());
         assertEquals("CHF", Money.franc(1).currency());

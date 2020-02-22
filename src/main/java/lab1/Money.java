@@ -26,6 +26,14 @@ public class Money implements Expression {
         return amount == money.amount && currency().equals(money.currency());
     }
 
+    public boolean greater(Money money) {
+        return amount > money.amount && currency().equals(money.currency());
+    }
+
+    public boolean less(Money money) {
+        return amount < money.amount && currency().equals(money.currency());
+    }
+
     public Expression times(int multiplier) {
         return new Money(amount * multiplier, currency);
     }
