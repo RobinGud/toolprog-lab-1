@@ -89,10 +89,18 @@ public class TestExample {
 
     @Test
     public void testMixedAddition() {
-        Exchanger Exchanger = new Exchanger();
-        Exchanger.addRate("CHF", "USD", 2);
-        Money result = Exchanger.reduce(fiveBucks.plus(tenFrancs), "USD");
+        Exchanger exchanger = new Exchanger();
+        exchanger.addRate("CHF", "USD", 2);
+        Money result = exchanger.reduce(fiveBucks.plus(tenFrancs), "USD");
         assertEquals(Money.dollar(10), result);
+    }
+
+    @Test
+    public void testMixedSubtrahion() {
+        Exchanger exchanger = new Exchanger();
+        exchanger.addRate("CHF", "USD", 2);
+        Money result = exchanger.reduce(fiveBucks.dif(tenFrancs), "USD");
+        assertEquals(Money.dollar(0), result);
     }
 
     @Test
