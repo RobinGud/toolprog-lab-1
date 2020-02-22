@@ -4,11 +4,11 @@
 package lab1;
 
 public class App {
-    public String getGreeting() {
-        return "Hello world.";
+    public String MyNewOverCoolFeature() {
+        return "Слава Україні! Героям слава!";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        System.out.println(new App().MyNewOverCoolFeature());
     }
 }
