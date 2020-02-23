@@ -1,0 +1,6 @@
+[submodule "techprog-lab-1"]
+	path = techprog-lab-1
+	url = https://github.com/RobinGud/techprog-lab-1
+[submodule "techprog-lab-2"]
+	path = techprog-lab-2
+	url = https://github.com/RobinGud/techprog-lab-2
